@@ -4,6 +4,8 @@ import BrandBanner from "../components/common/BrandBanner";
 import styles from "./Login.module.css";
 import loginBg from "../assets/images/SAU.jpg";
 import monumentsSkyline from "../assets/images/monuments-skyline-trimmed.png";
+import Input from "../components/common/Input";
+import ErrorMessage from "../components/common/ErrorMessage";
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -23,27 +25,21 @@ function Login() {
                 <div className={styles.card}>
                     <h2 className={styles.title}>Login</h2>
                     <form onSubmit={handleSubmit}>
-                        <div className={styles.field}>
-                            <label className={styles.label} htmlFor="email">Email</label>
-                            <input
-                                id="email"
-                                type="email"
-                                className={styles.input}
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                        </div>
+                        <Input
+                            label="Email"
+                            id="email"
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
 
-                        <div className={styles.field}>
-                            <label className={styles.label} htmlFor="password">Password</label>
-                            <input
-                                id="password"
-                                type="password"
-                                className={styles.input}
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                        </div>
+                        <Input
+                            label="Password"
+                            id="password"
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
 
                         <Button
                             variant="primary"
@@ -54,19 +50,19 @@ function Login() {
                             {loading ? "Logging in..." : "Login"}
                         </Button>
 
-                        {error && <p className={styles.error}>{error}</p>}
+                        <ErrorMessage message={error} />
                     </form>
 
                     <p className={styles.hint}>
                         Use SAU email or Company email to login.
                     </p>
                 </div>
-
             </div>
+
             <div
-         className={styles.skyline}
-         style={{ "--skyline-mask": `url(${monumentsSkyline})` }}
-/>
+                className={styles.skyline}
+                style={{ "--skyline-mask": `url(${monumentsSkyline})` }}
+            />
         </div>
     );
 }
