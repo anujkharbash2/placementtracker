@@ -16,5 +16,14 @@ module.exports = {
     comparePassword
 };
 
+const crypto = require('crypto');
 
+function generateRandomPassword(length = 5) {
+  return crypto.randomBytes(length)
+    .toString('base64')
+    .replace(/[^a-zA-Z0-9]/g, '')
+    .slice(0, length);
+}
+
+module.exports = { hashPassword, comparePassword, generateRandomPassword };
 //10
