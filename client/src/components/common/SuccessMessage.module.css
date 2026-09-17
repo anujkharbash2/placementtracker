@@ -1,0 +1,6 @@
+.success {
+  color: var(--color-success);
+  font-size: 0.85rem;
+  margin-top: var(--spacing-sm);
+  text-align: center;
+}

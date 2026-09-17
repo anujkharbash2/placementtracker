@@ -1,0 +1,88 @@
+.adminDashboard {
+    min-height: 100vh;
+
+    background-color: var(--color-bg);
+
+    display: flex;
+}
+
+.mainContent {
+    margin-left: 250px;
+
+    width: calc(100% - 250px);
+
+    min-height: 100vh;
+
+    padding: var(--spacing-xl) var(--spacing-xl);
+
+    background-color: var(--color-bg);
+}
+
+.mainContent h1 {
+    margin: 0 0 var(--spacing-xs);
+
+    font-size: 28px;
+    font-weight: 600;
+
+    color: var(--color-secondary);
+}
+
+.mainContent p {
+    margin: 0 0 var(--spacing-lg);
+
+    color: var(--color-text-muted);
+    font-size: 15px;
+    line-height: 1.5;
+
+    max-width: 640px;
+}
+
+.logoutButton {
+    margin-bottom: var(--spacing-lg);
+
+    padding: 10px 20px;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    color: var(--color-primary);
+
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+
+    cursor: pointer;
+
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.logoutButton:hover {
+    background-color: #f0f3f7;
+    border-color: var(--color-primary-light);
+}
+
+.logoutButton:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+.logoutButton:active {
+    background-color: #e8ecf2;
+}
+
+/* Reusable card surface for dashboard widgets */
+.card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+}
+
+@media (max-width: 768px) {
+    .mainContent {
+        margin-left: 72px;
+        width: calc(100% - 72px);
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+}
