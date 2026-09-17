@@ -10,11 +10,7 @@ async function hashPassword(normalPassword) {
 async function comparePassword(normalPassword, hashedPassword) {
     return await bycrypt.compare(normalPassword, hashedPassword);
 }
-
-module.exports = {
-    hashPassword,
-    comparePassword
-};
+//generates a random password
 
 const crypto = require('crypto');
 
