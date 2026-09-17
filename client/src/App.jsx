@@ -2,7 +2,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Student from './dashboards/Student';
 import Recruiter from './dashboards/Recruiter';
 import Admin from './dashboards/Admin';
-import Login from "./Login";
+import Login from "./pages/Login";
 
 
 function App() {
