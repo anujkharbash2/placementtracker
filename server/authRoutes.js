@@ -68,15 +68,15 @@ router.post('/register', verifyToken, requireRole('admin'), async (req, res) => 
     const newUser = userResult.rows[0];
 
     if (role === 'student') {
-      const { roll_number, degree, branch, admission_year, passing_year } = req.body;
-      if (!roll_number || !degree || !branch || !admission_year || !passing_year) {
+      const { roll_number } = req.body;
+      if (!roll_number) {
         await client.query('ROLLBACK');
         return res.status(400).json({ error: true, message: 'Missing student fields' });
       }
       await client.query(
-        `INSERT INTO students (user_id, roll_number, degree, branch, admission_year, passing_year)
-         VALUES ($1, $2, $3, $4, $5, $6)`,
-        [newUser.id, roll_number, degree, branch, admission_year, passing_year]
+        `INSERT INTO students (user_id, roll_number)
+         VALUES ($1, $2)`,
+        [newUser.id, roll_number, ]
       );
     } else if (role === 'recruiter') {
       const { company_id, designation, official_email } = req.body;

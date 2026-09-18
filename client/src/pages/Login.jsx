@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { API_BASE_URL } from "../config";
 import Button from "../components/common/Button";
 import BrandBanner from "../components/common/BrandBanner";
 import Input from "../components/common/Input";
@@ -18,7 +19,7 @@ function Login() {
     const { login } = useAuth();
     const navigate = useNavigate();
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
         setError("");
 
@@ -29,17 +30,32 @@ function Login() {
 
         setLoading(true);
 
-        setTimeout(() => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password }),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                setError(data.message || "Login failed.");
+                return;
+            }
+
+            login(data.token, data.user.role, data.user.name, data.must_reset_password);
+
+            if (data.must_reset_password) {
+                navigate("/reset-password");
+            } else {
+                navigate(`/${data.user.role}`);
+            }
+        } catch (err) {
+            setError("Could not reach the server.");
+        } finally {
             setLoading(false);
-
-            // Mock: pretend login succeeded, fake token + role
-            // Replace this whole block with a real fetch call in Task 7
-            const fakeToken = "mock-jwt-token";
-            const fakeRole = "admin";
-
-            login(fakeToken, fakeRole);
-            navigate("/admin");
-        }, 800);
+        }
     }
 
     return (
