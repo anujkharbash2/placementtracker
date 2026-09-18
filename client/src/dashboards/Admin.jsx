@@ -4,7 +4,7 @@ import styles from "./Admin.module.css";
 import Button from "../components/common/Button";
 import Sidebar from "../components/common/Sidebar";
 
-function AdminDashboard() {
+function Admin() {
     const { role, name, logout } = useAuth();
     const adminSidebarItems = [
         { label: "Dashboard", path: "/admin" },
@@ -26,4 +26,4 @@ function AdminDashboard() {
         </div>);
 }
 
-export default AdminDashboard;
+export default Admin;

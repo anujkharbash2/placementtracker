@@ -14,6 +14,7 @@ function Login() {
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+    
 
     const { login } = useAuth();
     const navigate = useNavigate();
@@ -35,10 +36,10 @@ function Login() {
             // Mock: pretend login succeeded, fake token + role
             // Replace this whole block with a real fetch call in Task 7
             const fakeToken = "mock-jwt-token";
-            const fakeRole = "admin";
+            const fakeRole = "student";
 
             login(fakeToken, fakeRole);
-            navigate("/admin");
+            navigate("/student");
         }, 800);
     }
 
