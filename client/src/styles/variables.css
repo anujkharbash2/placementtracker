@@ -32,4 +32,16 @@
   --radius-lg: 16px;
 
   --font-base: 'Inter', system-ui, sans-serif;
+
+
+  --color-bg: #f5f5f5;
+    --color-surface: #ffffff;
+
+    --color-tertiary: #eef0f2;
+    --color-tertiary-dark: #e2e5e8;
+
+    --color-border: #e5e5e5;
+
+    --color-text: #222222;
+    --color-text-muted: #777777;
 }

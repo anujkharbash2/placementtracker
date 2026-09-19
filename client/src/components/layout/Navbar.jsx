@@ -14,7 +14,11 @@ function Navbar() {
 
     return (
         <nav className={styles.navbar}>
-            <div className={styles.brand}>SAU Placement Tracker</div>
+            <div className={styles.brand}>
+                <Link to="/" className={styles.brandLink}>
+                    CETP
+                </Link>
+            </div>
 
             <div className={styles.links}>
                 {role === "student" && (

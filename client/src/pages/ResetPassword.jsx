@@ -6,6 +6,7 @@ import Input from "../components/common/Input";
 import Button from "../components/common/Button";
 import ErrorMessage from "../components/common/ErrorMessage";
 import SuccessMessage from "../components/common/SuccessMessage";
+import styles from "./ResetPassword.module.css";
 
 function ResetPassword() {
     const [newPassword, setNewPassword] = useState("");
@@ -64,9 +65,9 @@ function ResetPassword() {
     }
 
     return (
-        <div style={{ maxWidth: 380, margin: "4rem auto" }}>
+        <div className={styles.resetPassword}>
             <h2>Set New Password</h2>
-            <p>You're logging in for the first time — please set a new password.</p>
+            <p>You're logging in for the first time, please set a new password.</p>
 
             <form onSubmit={handleSubmit}>
                 <Input

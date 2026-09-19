@@ -1,0 +1,209 @@
+.wrapper {
+    width: 100%;
+    box-sizing: border-box;
+
+    background-color: var(--color-surface);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+
+    padding: var(--spacing-lg);
+}
+
+/* Header */
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: var(--spacing-md);
+
+    margin-bottom: var(--spacing-lg);
+}
+
+.title {
+    margin: 0;
+
+    color: var(--color-secondary);
+
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.subtitle {
+    margin: 5px 0 0;
+
+    color: var(--color-text-muted);
+
+    font-size: 13px;
+}
+
+.count {
+    padding: 6px 10px;
+
+    background-color: var(--color-tertiary);
+
+    border-radius: var(--radius-lg);
+
+    color: var(--color-secondary);
+
+    font-size: 12px;
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+/* Table */
+
+.tableContainer {
+    width: 100%;
+
+    overflow-x: auto;
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+}
+
+.table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    font-family: var(--font-base);
+    font-size: 13px;
+}
+
+.table th {
+    padding: 12px 14px;
+
+    background-color: var(--color-bg);
+
+    border-bottom: 1px solid var(--color-border);
+
+    color: var(--color-text-muted);
+
+    font-size: 11px;
+    font-weight: 600;
+
+    text-align: left;
+
+    white-space: nowrap;
+}
+
+.table td {
+    padding: 13px 14px;
+
+    border-bottom: 1px solid var(--color-border);
+
+    color: var(--color-text);
+
+    white-space: nowrap;
+}
+
+.table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.table tbody tr:hover {
+    background-color: #fafafa;
+}
+
+.name {
+    color: var(--color-secondary) !important;
+
+    font-weight: 600;
+}
+
+/* Role badges */
+
+.role {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 4px 9px;
+
+    border-radius: 999px;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    text-transform: capitalize;
+}
+
+.student {
+    background-color: #eef4fb;
+    color: var(--color-primary);
+}
+
+.recruiter {
+    background-color: #f5f0df;
+    color: #806a16;
+}
+
+.admin {
+    background-color: #eeeeee;
+    color: var(--color-secondary);
+}
+
+/* Loading */
+
+.message {
+    padding: 40px 20px;
+
+    color: var(--color-text-muted);
+
+    text-align: center;
+
+    font-size: 13px;
+}
+
+/* Empty */
+
+.empty {
+    padding: 40px 20px;
+
+    color: var(--color-text-muted);
+
+    text-align: center;
+
+    font-size: 13px;
+}
+
+/* Error */
+
+.error {
+    padding: 12px 14px;
+
+    background-color: rgba(179, 38, 30, 0.06);
+
+    border: 1px solid rgba(179, 38, 30, 0.15);
+
+    border-radius: var(--radius-md);
+
+    color: var(--color-danger);
+
+    font-size: 13px;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+    .wrapper {
+        padding: var(--spacing-md);
+    }
+
+    .header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .title {
+        font-size: 18px;
+    }
+
+    .table {
+        min-width: 600px;
+    }
+}
