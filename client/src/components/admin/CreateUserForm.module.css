@@ -1,17 +1,265 @@
 .wrapper {
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: var(--spacing-xl);
-  max-width: 480px;
+    width: 100%;
+    max-width: 520px;
+
+    padding: var(--spacing-xl);
+
+    background-color: var(--color-surface);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .title {
-  margin-bottom: var(--spacing-lg);
-  color: var(--color-secondary);
+    margin: 0 0 var(--spacing-lg);
+
+    color: var(--color-secondary);
+
+    font-size: 21px;
+    font-weight: 600;
+}.wrapper {
+    width: 100%;
+    max-width: 620px;
+
+    background-color: #f7f7f7;
+
+    border: 1px solid #e5e5e5;
+    border-radius: var(--radius-lg);
+
+    padding: var(--spacing-lg);
+
+    box-shadow: none;
 }
 
+/* --------------------------------
+   Title
+-------------------------------- */
+
+.title {
+    margin: 0 0 var(--spacing-lg);
+
+    color: var(--color-secondary);
+
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+
+/* --------------------------------
+   Form
+-------------------------------- */
+
+.wrapper form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+
+    padding: var(--spacing-md);
+
+    background-color: #ffffff;
+
+    border: 1px solid #e7e7e7;
+    border-radius: var(--radius-md);
+}
+
+
+/* --------------------------------
+   Input / Select areas
+-------------------------------- */
+
+.wrapper form > * {
+    width: 100%;
+}
+
+
+/* --------------------------------
+   Input styling
+-------------------------------- */
+
+.wrapper input,
+.wrapper select,
+.wrapper textarea {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 9px 11px;
+
+    background-color: #f3f3f3;
+
+    border: 1px solid transparent;
+    border-radius: 10px;
+
+    color: var(--color-text);
+
+    font-family: var(--font-base);
+    font-size: 13px;
+
+    transition:
+        background-color 0.15s ease,
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.wrapper input:hover,
+.wrapper select:hover,
+.wrapper textarea:hover {
+    background-color: #eeeeee;
+}
+
+.wrapper input:focus,
+.wrapper select:focus,
+.wrapper textarea:focus {
+    background-color: #ffffff;
+
+    border-color: var(--color-primary);
+
+    box-shadow: 0 0 0 2px rgba(14, 76, 146, 0.08);
+
+    outline: none;
+}
+
+.wrapper input::placeholder,
+.wrapper textarea::placeholder {
+    color: #999999;
+}
+
+
+/* --------------------------------
+   Labels
+-------------------------------- */
+
+.wrapper label {
+    color: #555555;
+
+    font-size: 11px;
+    font-weight: 500;
+}
+
+
+/* --------------------------------
+   Recruiter / Company section
+-------------------------------- */
+
+.wrapper form > div:has(input[id="companyName"]) {
+    margin-top: 4px;
+
+    padding: var(--spacing-md);
+
+    background-color: #fafafa;
+
+    border: 1px solid #e5e5e5;
+    border-radius: var(--radius-md);
+}
+
+
+/* --------------------------------
+   Buttons
+-------------------------------- */
+
+.wrapper button {
+    font-family: var(--font-base);
+    font-size: 13px;
+}
+
+
+/* Add company / secondary button */
+
+.wrapper button[type="button"] {
+    min-height: 36px;
+
+    border-radius: 9px;
+
+    transition:
+        background-color 0.15s ease,
+        border-color 0.15s ease,
+        color 0.15s ease;
+}
+
+
+/* --------------------------------
+   Primary submit button
+-------------------------------- */
+
 .submitButton {
-  width: 100%;
-  margin-top: var(--spacing-sm);
+    width: 100%;
+
+    margin-top: 6px;
+
+    min-height: 40px;
+
+    border-radius: 9px;
+}
+
+
+/* --------------------------------
+   Error / Success
+-------------------------------- */
+
+.wrapper form > div:last-child {
+    font-size: 12px;
+}
+
+
+/* --------------------------------
+   Mobile
+-------------------------------- */
+
+@media (max-width: 768px) {
+    .wrapper {
+        padding: var(--spacing-md);
+    }
+
+    .title {
+        font-size: 18px;
+    }
+
+    .wrapper form {
+        padding: 12px;
+    }
+}
+
+/* Form spacing */
+
+.wrapper form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+/* Company creation area */
+
+.wrapper form > div {
+    width: 100%;
+}
+
+/* Buttons */
+
+.submitButton {
+    width: 100%;
+    margin-top: var(--spacing-sm);
+}
+
+/* Accessible focus */
+
+.wrapper input:focus,
+.wrapper select:focus,
+.wrapper textarea:focus {
+    outline: none;
+
+    border-color: var(--color-primary);
+
+    box-shadow: 0 0 0 2px rgba(14, 76, 146, 0.12);
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+    .wrapper {
+        max-width: 100%;
+        padding: var(--spacing-lg);
+    }
 }
