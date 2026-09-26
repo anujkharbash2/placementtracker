@@ -1,12 +1,15 @@
 import styles from "./UserList.module.css";
+import Button from "../common/Button";
 
 function UserList({
     users,
     loading,
     error,
     title = "Manage Users",
+    onEdit,
+    onDeactivate,
+    onReactivate,
 }) {
-
     if (loading) {
         return (
             <div className={styles.wrapper}>
@@ -38,9 +41,7 @@ function UserList({
     return (
         <div className={styles.wrapper}>
 
-            {/* Header */}
             <div className={styles.header}>
-
                 <div>
                     <h2 className={styles.title}>
                         {title}
@@ -54,17 +55,13 @@ function UserList({
                 <span className={styles.count}>
                     {users.length} users
                 </span>
-
             </div>
 
-            {/* Empty state */}
             {users.length === 0 ? (
                 <div className={styles.empty}>
                     No users found.
                 </div>
             ) : (
-
-                /* User table */
                 <div className={styles.tableContainer}>
 
                     <table className={styles.table}>
@@ -75,13 +72,19 @@ function UserList({
                                 <th>Email</th>
                                 <th>Mobile</th>
                                 <th>Role</th>
+                                <th>Edit</th>
+                                <th>Action</th>
+                                
                             </tr>
                         </thead>
 
                         <tbody>
-
                             {users.map((user) => (
-                                <tr key={user.id}>
+                                <tr 
+                                key={user.id}
+                                className={
+                                    user.is_active === false
+                                        ? styles.deactivatedRow :""}>
 
                                     <td className={styles.name}>
                                         {user.name}
@@ -105,9 +108,41 @@ function UserList({
                                         </span>
                                     </td>
 
+                                    <td>
+                                        <Button
+                                            type="button"
+                                            variant="secondary"
+                                            className={styles.editButton}
+                                            onClick={() =>
+                                                onEdit(user)
+                                            }
+                                        >
+                                            Edit
+                                        </Button>
+                                    </td>
+
+                                    <td>
+    {user.is_active === false ? (
+        <Button
+            type="button"
+            variant="success"
+            onClick={() => onReactivate(user.id)}
+        >
+            Reactivate
+        </Button>
+    ) : (
+        <Button
+            type="button"
+            variant="danger"
+            onClick={() => onDeactivate(user.id)}
+        >
+            Deactivate
+        </Button>
+    )}
+</td>
+
                                 </tr>
                             ))}
-
                         </tbody>
 
                     </table>

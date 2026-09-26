@@ -182,7 +182,7 @@ function CreateUserForm() {
                 <Input label="Name" id="name" value={name} onChange={(e) => setName(e.target.value)} />
                 <Input label="Email" id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 <Input label="Enrollment Number" id="rollNumber" value={rollNumber} onChange={(e) => setRollNumber(e.target.value)} />
-
+                <Input label="Mobile Number" id="mobileNumber" value={mobileNumber} onChange={(e) => setMobileNumber(e.target.value)} />
                 {role === "recruiter" && (
                     <>
                         <Input label="Designation" id="designation" value={designation} onChange={(e) => setDesignation(e.target.value)} />

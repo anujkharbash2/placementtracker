@@ -51,3 +51,13 @@
   background-color: var(--color-primary);
   color: #ffffff;
 }
+
+.success {
+  background-color: var(--color-success);
+  color: #ffffff;
+}
+.success:hover:not(:disabled) {
+  background-color: transparent;
+  color: var(--color-success);
+  border: 1px solid var(--color-success-dark);
+}

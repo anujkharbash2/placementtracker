@@ -20,6 +20,7 @@ router.get(
                     email,
                     mobile_number,
                     role,
+                    is_active,
                     must_reset_password
                 FROM users
             `;
@@ -126,63 +127,85 @@ router.put(
         }
     }
 );
-
-// =====================================================
-// DELETE USER
-// DELETE /api/users/:id
-// =====================================================
-router.delete(
-    "/users/:id",
-    verifyToken,    
+// PATCH /api/users/:id/deactivate
+router.patch(
+    "/users/:id/deactivate",
+    verifyToken,
     requireRole("admin"),
-    async(req, res) => {
+    async (req, res) => {
         try {
             const userId = parseInt(req.params.id);
 
             if (isNaN(userId)) {
-                return res.status(400).json({
-                    error: true,
-                    message: "Invalid user ID",
-                });
+                return res.status(400).json({ error: true, message: "Invalid user ID" });
             }
 
-            //Prevent admin from deleting themselves
             if (req.user.userId === userId) {
-                return res.status(403).json({
-                    error: true,
-                    message: "You cannot delete your own account",
-                });
+                return res.status(403).json({ error: true, message: "You cannot deactivate your own account" });
             }
 
-            //Check if user exists
-            const existingUser = await pool.query('SELECT id, role FROM users WHERE id = $1', [userId]);
+            const existingUser = await pool.query('SELECT id, is_active FROM users WHERE id = $1', [userId]);
             if (existingUser.rows.length === 0) {
-                return res.status(404).json({
-                    error: true,
-                    message: "User not found",
-                });
+                return res.status(404).json({ error: true, message: "User not found" });
             }
-            //Delete user
-            //Uss student se related saara data khallas
-            //ye sab delete cascade ki wajah se hoga
+            if (existingUser.rows[0].is_active === false) {
+                return res.status(400).json({ error: true, message: "User is already deactivated" });
+            }
 
-            await pool.query('DELETE FROM users WHERE id = $1', [userId]);
+            const result = await pool.query(
+                'UPDATE users SET is_active = false WHERE id = $1 RETURNING id, name, email, role, is_active',
+                [userId]
+            );
 
             return res.status(200).json({
                 success: true,
-                message: "User deleted successfully",
+                message: "User deactivated successfully",
+                user: result.rows[0],
             });
-
         } catch (err) {
-            console.error("DELETE /api/users/:id error:", err);
-
-            return res.status(500).json({
-                error: true,
-                message: "Server error",
-            });
+            console.error("PATCH /api/users/:id/deactivate error:", err);
+            return res.status(500).json({ error: true, message: "Server error" });
         }
     }
-);       
+);
+
+// PATCH /api/users/:id/reactivate
+router.patch(
+    "/users/:id/reactivate",
+    verifyToken,
+    requireRole("admin"),
+    async (req, res) => {
+        try {
+            const userId = parseInt(req.params.id);
+
+            if (isNaN(userId)) {
+                return res.status(400).json({ error: true, message: "Invalid user ID" });
+            }
+
+            const existingUser = await pool.query('SELECT id, is_active FROM users WHERE id = $1', [userId]);
+            if (existingUser.rows.length === 0) {
+                return res.status(404).json({ error: true, message: "User not found" });
+            }
+            if (existingUser.rows[0].is_active === true) {
+                return res.status(400).json({ error: true, message: "User is already active" });
+            }
+
+            const result = await pool.query(
+                'UPDATE users SET is_active = true WHERE id = $1 RETURNING id, name, email, role, is_active',
+                [userId]
+            );
+
+            return res.status(200).json({
+                success: true,
+                message: "User reactivated successfully",
+                user: result.rows[0],
+            });
+        } catch (err) {
+            console.error("PATCH /api/users/:id/reactivate error:", err);
+            return res.status(500).json({ error: true, message: "Server error" });
+        }
+    }
+);    
 
 
 module.exports = router;
