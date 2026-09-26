@@ -4,6 +4,7 @@ import { useAuth } from "../context/AuthContext";
 import styles from "./Student.module.css";
 import Button from "../components/common/Button";
 import Sidebar from "../components/common/Sidebar";
+import StudentProfile from "../components/student/StudentProfile";
 
 function student(){
     const{role, name, logout} = useAuth();
@@ -28,7 +29,9 @@ function student(){
             label: "Profile",
             active: activePage === "profile",
             onClick: () => setActivePage("profile"),
+
         },
+        
     ];
     return(
      <div className={styles.studentDashboard}>
@@ -61,7 +64,7 @@ function student(){
                 )}
 
                 {activePage === "profile" && (
-                    <h1>Manage Profile</h1>
+                   <StudentProfile />
                 )}
 
             </div>

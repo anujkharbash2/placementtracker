@@ -13,6 +13,9 @@ app.use('/api/auth', authRoutes);
 const userRoutes = require("./userRoutes");
 app.use("/api", userRoutes);
 
+const studentRoutes = require('./studentRoutes');
+app.use('/api/students', studentRoutes);
+
 app.use('/api/companies', companyRoutes);
 
 const PORT = process.env.PORT || 5000;
