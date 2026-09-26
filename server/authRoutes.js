@@ -5,50 +5,57 @@ const { hashPassword, comparePassword, generateRandomPassword } = require('./pas
 const jwt = require('jsonwebtoken');
 const { verifyToken, requireRole } = require('./authMiddleware');
 const { sendCredentialsEmail } = require('./emailutils');
+const { isValidEmail, isValidMobile } = require('./validators');
 
-// POST /api/auth/bootstrap-admin
-router.post('/bootstrap-admin', async (req, res) => {
-  if (process.env.BOOTSTRAP_ENABLED !== 'true') {
-    return res.status(404).json({ error: true, message: 'Not found' });
-  }
+// // POST /api/auth/bootstrap-admin
+// router.post('/bootstrap-admin', async (req, res) => {
+//   if (process.env.BOOTSTRAP_ENABLED !== 'true') {
+//     return res.status(404).json({ error: true, message: 'Not found' });
+//   }
 
-  try {
-    const adminCheck = await pool.query(
-      "SELECT id FROM users WHERE role = 'admin' LIMIT 1"
-    );
-    if (adminCheck.rows.length > 0) {
-      return res.status(403).json({ error: true, message: 'Admin already exists' });
-    }
+//   try {
+//     const adminCheck = await pool.query(
+//       "SELECT id FROM users WHERE role = 'admin' LIMIT 1"
+//     );
+//     if (adminCheck.rows.length > 0) {
+//       return res.status(403).json({ error: true, message: 'Admin already exists' });
+//     }
 
-    const { name, email, password, mobile_number } = req.body;
-    if (!name || !email || !password) {
-      return res.status(400).json({ error: true, message: 'Missing required fields' });
-    }
+//     const { name, email, password, mobile_number } = req.body;
+//     if (!name || !email || !password) {
+//       return res.status(400).json({ error: true, message: 'Missing required fields' });
+//     }
 
-    const password_hash = await hashPassword(password);
+//     const password_hash = await hashPassword(password);
 
-    const result = await pool.query(
-      `INSERT INTO users (name, email, password_hash, mobile_number, role)
-       VALUES ($1, $2, $3, $4, 'admin')
-       RETURNING id, name, email, role`,
-      [name, email, password_hash, mobile_number]
-    );
+//     const result = await pool.query(
+//       `INSERT INTO users (name, email, password_hash, mobile_number, role)
+//        VALUES ($1, $2, $3, $4, 'admin')
+//        RETURNING id, name, email, role`,
+//       [name, email, password_hash, mobile_number]
+//     );
 
-    res.status(201).json({ success: true, user: result.rows[0] });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: true, message: 'Server error' });
-  }
-});
+//     res.status(201).json({ success: true, user: result.rows[0] });
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ error: true, message: 'Server error' });
+//   }
+// });
 
 // POST /api/auth/register
 router.post('/register', verifyToken, requireRole('admin'), async (req, res) => {
   const client = await pool.connect();
   try {
-    const { name, email, mobile_number, role } = req.body; // no password from admin anymore
+    const { name, email, mobile_number, role } = req.body;
 
-    if (!name || !email || !role) {
+    if (!name || !email || !mobile_number || !role) {
       return res.status(400).json({ error: true, message: 'Missing required fields' });
+    }
+    if (!isValidEmail(email)) {
+      return res.status(400).json({ error: true, message: 'Invalid email format' });
+    }
+    if (!isValidMobile(mobile_number)) {
+      return res.status(400).json({ error: true, message: 'Mobile number must be 10 digits' });
     }
     if (!['student', 'recruiter', 'admin'].includes(role)) {
       return res.status(400).json({ error: true, message: 'Invalid role' });
@@ -71,12 +78,12 @@ router.post('/register', verifyToken, requireRole('admin'), async (req, res) => 
       const { roll_number } = req.body;
       if (!roll_number) {
         await client.query('ROLLBACK');
-        return res.status(400).json({ error: true, message: 'Missing student fields' });
+        return res.status(400).json({ error: true, message: 'Missing roll number' });
       }
       await client.query(
         `INSERT INTO students (user_id, roll_number)
          VALUES ($1, $2)`,
-        [newUser.id, roll_number, ]
+        [newUser.id, roll_number]
       );
     } else if (role === 'recruiter') {
       const { company_id, designation, official_email } = req.body;
@@ -92,7 +99,6 @@ router.post('/register', verifyToken, requireRole('admin'), async (req, res) => 
     }
 
     await client.query('COMMIT');
-
     await sendCredentialsEmail(email, name, plainPassword);
 
     res.status(201).json({ success: true, user: newUser });
@@ -124,6 +130,11 @@ router.post('/login', async (req, res) => {
     }
 
     const user = result.rows[0];
+
+    if (!user.is_active) {
+  return res.status(403).json({ error: true, message: 'This account has been deactivated. Contact the placement cell.' });
+}
+
     const match = await comparePassword(password, user.password_hash);
     if (!match) {
       return res.status(401).json({ error: true, message: 'Invalid email or password' });

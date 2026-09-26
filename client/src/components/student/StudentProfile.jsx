@@ -10,7 +10,7 @@ import styles from "./StudentProfile.module.css";
 
 const DEGREE_OPTIONS = [
     { value: "B.Tech", label: "B.Tech" },
-    { value: "Dual Degree B.Tech-M.Tech", label: "Dual Degree B.Tech - M.Tech" },
+    { value: "Dual B.Tech-M.Tech", label: "Dual B.Tech - M.Tech" },
     { value: "M.Tech", label: "M.Tech" },
     { value: "Integrated M.Tech", label: "Integrated M.Tech" },
     { value: "Integrated BS-MS", label: "Integrated BS - MS (Interdisciplinary Sciences)" },
@@ -33,8 +33,8 @@ const BRANCH_OPTIONS_BY_DEGREE = {
         { value: "Computer Science & Engineering", label: "Computer Science & Engineering" },
         { value: "Mathematics & Computing", label: "Mathematics & Computing" },
     ],
-    "Dual Degree B.Tech-M.Tech": [
-        { value: "Computer Science & Engineering", label: "Computer Science & Engineering" },
+    "Dual B.Tech-M.Tech": [
+        { value: "CSE", label: "CSE" },
     ],
     "M.Tech": [
         { value: "Computer Science & Engineering", label: "Computer Science & Engineering" },

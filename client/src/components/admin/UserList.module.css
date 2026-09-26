@@ -207,3 +207,10 @@
         min-width: 600px;
     }
 }
+.deactivatedRow td {
+    background-color: var(--color-danger-light) ;
+}
+
+.deactivatedRow:hover td {
+    background-color: #ffdddb;
+}
