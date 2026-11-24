@@ -9,6 +9,11 @@ app.use(cors());
 
 const authRoutes = require('./authRoutes');
 app.use('/api/auth', authRoutes);
+const resumeRoutes = require('./resumeRoutes');
+app.use('/api/resumes', resumeRoutes);
+
+const applicationRoutes = require('./applicationRoutes');
+app.use('/api/applications', applicationRoutes);
 
 const userRoutes = require("./userRoutes");
 app.use("/api", userRoutes);
@@ -18,10 +23,15 @@ app.use('/api/students', studentRoutes);
 
 app.use('/api/companies', companyRoutes);
 
+const driveRoutes = require('./driveRoutes');
+app.use('/api/drives', driveRoutes);
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+const dashboardRoutes = require('./dashboardRoutes');
+app.use('/api/dashboard', dashboardRoutes);
 
 // 404 handler
 app.use((req, res) => {

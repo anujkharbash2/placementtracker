@@ -1,0 +1,18 @@
+.bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+  margin-top: var(--spacing-md);
+}
+
+.info {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.buttons {
+  display: flex;
+  gap: var(--spacing-sm);
+}

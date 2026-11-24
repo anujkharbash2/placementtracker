@@ -114,4 +114,3 @@ router.patch('/profile', verifyToken, requireRole('student'), async (req, res) =
 });
 
 module.exports = router;
-

@@ -1,0 +1,16 @@
+.row {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.file {
+  font-size: 0.9rem;
+}
+
+.hint {
+  margin-top: var(--spacing-xs);
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}

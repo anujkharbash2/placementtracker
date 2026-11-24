@@ -1,0 +1,77 @@
+.tracker {
+  display: flex;
+  margin-top: var(--spacing-md);
+  overflow-x: auto;
+  padding: 4px 0;
+}
+
+.step {
+  flex: 1;
+  min-width: 76px;
+  position: relative;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.step::before {
+  content: "";
+  position: absolute;
+  top: 11px;
+  left: -50%;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-border);
+  z-index: 0;
+}
+
+.step:first-child::before {
+  display: none;
+}
+
+.dot {
+  position: relative;
+  z-index: 1;
+  width: 24px;
+  height: 24px;
+  margin: 0 auto var(--spacing-xs);
+  border-radius: 50%;
+  border: 2px solid var(--color-border);
+  background-color: var(--color-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+}
+
+.done::before,
+.current::before {
+  background-color: var(--color-primary);
+}
+
+.done .dot {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #ffffff;
+}
+
+.current {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.current .dot {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(14, 76, 146, 0.2);
+}
+
+.rejected {
+  margin-top: var(--spacing-md);
+  background-color: rgba(179, 38, 30, 0.1);
+  border: 1px solid var(--color-danger);
+  color: var(--color-danger);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: 0.85rem;
+}

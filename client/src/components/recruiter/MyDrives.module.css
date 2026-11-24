@@ -1,0 +1,43 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.heading {
+  color: var(--color-secondary);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.note {
+  color: var(--color-text-muted);
+}
+
+.error {
+  color: var(--color-danger);
+}
+
+.awaiting {
+  margin-top: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-warning);
+}
+
+.rejection {
+  margin-top: 4px;
+  font-size: 0.85rem;
+  color: var(--color-danger);
+}
+
+.reviewedBy {
+  margin-top: var(--spacing-sm);
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--color-text-muted);
+}

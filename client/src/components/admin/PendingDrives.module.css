@@ -1,0 +1,50 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.heading {
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-secondary);
+}
+
+.filters {
+  margin-bottom: var(--spacing-sm);
+}
+
+.companyBlock {
+  margin-bottom: var(--spacing-sm);
+  font-size: 0.85rem;
+}
+
+.error {
+  color: var(--color-danger);
+}
+
+.description {
+  margin-top: var(--spacing-sm);
+  font-size: 0.9rem;
+}
+
+
+.detailsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--spacing-xs) var(--spacing-md);
+  margin-top: var(--spacing-sm);
+  font-size: 0.85rem;
+}
+
+
+.badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.closed {
+  background-color: rgba(107, 107, 107, 0.15);
+  color: var(--color-text-muted);
+}

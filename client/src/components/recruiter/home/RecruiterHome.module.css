@@ -1,0 +1,159 @@
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.row {
+  padding: var(--spacing-sm) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.row:last-child { border-bottom: none; }
+
+.rowButton {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-sm);
+  font-family: var(--font-base);
+  color: inherit;
+  cursor: pointer;
+}
+
+.rowButton:hover,
+.rowButton:focus-visible {
+  background-color: rgba(14, 76, 146, 0.06);
+  outline: none;
+}
+
+.rowUrgent {
+  background-color: rgba(184, 134, 11, 0.12);
+  border-left: 3px solid var(--color-warning);
+}
+
+.urgentTag {
+  align-self: flex-start;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background-color: rgba(184, 134, 11, 0.2);
+  color: #8a6508;
+}
+
+.rowTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.rowMeta {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.reason {
+  margin: var(--spacing-xs) 0;
+  font-size: 0.9rem;
+  white-space: pre-wrap;
+}
+
+.rowAction { margin-top: var(--spacing-xs); }
+
+.pipelineGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr));
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.pipelineCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  min-width: 0;
+}
+
+.pipelineHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+}
+
+.pipelineHeader h4 {
+  margin: 0;
+  color: var(--color-secondary);
+}
+
+.pipelineRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.funnelLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.funnel {
+  list-style: none;
+  display: flex;
+  gap: var(--spacing-xs);
+  overflow-x: auto;
+}
+
+.funnelStep {
+  flex: 1 0 84px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: var(--spacing-sm);
+  background-color: rgba(14, 76, 146, 0.08);
+  border-radius: var(--radius-sm);
+  text-align: center;
+}
+
+.funnelCount {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.funnelName {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.chips {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.firstDrive {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+}

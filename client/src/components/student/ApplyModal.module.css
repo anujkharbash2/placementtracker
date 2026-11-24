@@ -1,0 +1,65 @@
+.driveTitle {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-md);
+}
+
+.sectionTitle {
+  margin: var(--spacing-md) 0 var(--spacing-sm);
+  font-size: 0.9rem;
+  color: var(--color-secondary);
+}
+
+.empty {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.resumeList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-sm);
+  cursor: pointer;
+}
+
+.name {
+  display: block;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.meta {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.errorBox {
+  margin-top: var(--spacing-md);
+  background-color: rgba(179, 38, 30, 0.1);
+  border: 1px solid var(--color-danger);
+  color: var(--color-danger);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: 0.9rem;
+}
+
+.reasons {
+  margin: var(--spacing-xs) 0 0 var(--spacing-md);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+}

@@ -1,0 +1,8 @@
+.wrapper {
+  margin-top: var(--spacing-md);
+}
+
+.actions {
+  display: flex;
+  gap: var(--spacing-sm);
+}

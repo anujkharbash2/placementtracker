@@ -1,0 +1,13 @@
+.hint {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-top: -8px;
+  margin-bottom: var(--spacing-md);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+}

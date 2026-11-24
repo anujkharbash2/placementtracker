@@ -5,10 +5,15 @@ import styles from "./Student.module.css";
 import Button from "../components/common/Button";
 import Sidebar from "../components/common/Sidebar";
 import StudentProfile from "../components/student/StudentProfile";
+import AvailableDrives from "../components/student/AvailableDrives";
+import ResumeManager from "../components/student/ResumeManager";
+import MyApplications from "../components/student/MyApplications";
 
-function student(){
-    const{role, name, logout} = useAuth();
+
+function StudentDashboard() {
+    const { role, name, logout } = useAuth();
     const [activePage, setActivePage] = useState("dashboard");
+
     const studentSidebarItems = [
         {
             label: "Dashboard",
@@ -17,8 +22,8 @@ function student(){
         },
         {
             label: "Opportunities",
-            active: activePage === "opportunitites",
-            onClick: () => setActivePage("opportunitites"),
+            active: activePage === "opportunities",
+            onClick: () => setActivePage("opportunities"),
         },
         {
             label: "Track Applications",
@@ -26,26 +31,27 @@ function student(){
             onClick: () => setActivePage("track-applications"),
         },
         {
+    label: "Resumes",
+    active: activePage === "resumes",
+    onClick: () => setActivePage("resumes"),
+},
+        {
             label: "Profile",
             active: activePage === "profile",
             onClick: () => setActivePage("profile"),
-
         },
-        
-    ];
-    return(
-     <div className={styles.studentDashboard}>
 
+    ];
+
+    return (
+        <div className={styles.studentDashboard}>
             <Sidebar items={studentSidebarItems} />
 
             <div className={styles.mainContent}>
-
                 {activePage === "dashboard" && (
                     <>
                         <h1>Student Dashboard</h1>
-
                         <p>Logged in as: {name}</p>
-
                         <Button
                             variant="primary"
                             onClick={logout}
@@ -56,20 +62,24 @@ function student(){
                     </>
                 )}
 
-                {activePage === "opportunitites" && (
-                    <h1>Explore opportunitites</h1>
+                {activePage === "opportunities" && (
+                    <>
+                        <h1>Explore Opportunities</h1>
+                        <AvailableDrives onGoToProfile={() => setActivePage("profile")} />
+                    </>
                 )}
-                {activePage==="track-applications" && (
-                    <h1>Track your applications</h1>
+
+                {activePage === "track-applications" && (
+                    <MyApplications />
                 )}
+                {activePage === "resumes" && (<ResumeManager />)}
 
                 {activePage === "profile" && (
-                   <StudentProfile />
+                    <StudentProfile />
                 )}
-
             </div>
         </div>
     );
 }
 
-export default student;
+export default StudentDashboard;

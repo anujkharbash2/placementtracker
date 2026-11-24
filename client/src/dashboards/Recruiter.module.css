@@ -69,6 +69,10 @@
 .logoutButton:active {
     background-color: #e8ecf2;
 }
+.sectionSpacing {
+  margin-top: var(--spacing-xl);
+  color: var(--color-secondary);
+}
 
 /* Reusable card surface for dashboard widgets */
 .card {
